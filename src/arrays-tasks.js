@@ -20,8 +20,16 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+
+// console.log('ky');
+function getIntervalArray(start, end) {
+  const long = end - start + 1;
+  const a = new Array(long);
+  a.fill(0);
+  // console.log(a);
+  const arr = Array.from(a, (_, index) => start + index);
+  // console.log(arr);
+  return arr;
 }
 
 /**
@@ -37,8 +45,19 @@ function getIntervalArray(/* start, end */) {
  *    sumArrays([10, 20, 30], [5, 10, 15]) => [15, 30, 45]
  *    sumArrays([-1, 0, 1], [1, 2, 3, 4]) => [0, 2, 4, 4]
  */
-function sumArrays(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function sumArrays(arr1, arr2) {
+  const maxLength = Math.max(arr1.length, arr2.length);
+  const result = [];
+
+  // Проходим по индексам от 0 до maxLength - 1
+  for (let i = 0; i < maxLength; i += 1) {
+    // Получаем элементы из каждого массива (если индекс выходит за пределы, используем 0)
+    const val1 = arr1[i] || 0;
+    const val2 = arr2[i] || 0;
+    // Складываем и добавляем в результат
+    result.push(val1 + val2);
+  }
+  return result;
 }
 
 /**
@@ -53,8 +72,8 @@ function sumArrays(/* arr1, arr2 */) {
  *    findElement(['Array', 'Number', 'string'], 'Date') => -1
  *    findElement([0, 1, 2, 3, 4, 5], 5) => 5
  */
-function findElement(/* arr, value */) {
-  throw new Error('Not implemented');
+function findElement(arr, value) {
+  return arr.indexOf(value);
 }
 
 /**
@@ -71,8 +90,9 @@ function findElement(/* arr, value */) {
  *    findAllOccurrences([ null, undefined, null ], null) => 2
  *    findAllOccurrences([ true, 0, 1, 'true' ], true) => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, item) {
+  const result = arr.filter((word) => word === item);
+  return result.length;
 }
 
 /**
@@ -87,8 +107,9 @@ function findAllOccurrences(/* arr, item */) {
  *    removeFalsyValues([ 1, 2, 3, 4, 5, 'false' ]) => [ 1, 2, 3, 4, 5, 'false' ]
  *    removeFalsyValues([ false, 0, NaN, '', undefined ]) => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+function removeFalsyValues(arr) {
+  const result = arr.filter(Boolean);
+  return result;
 }
 
 /**
@@ -101,8 +122,9 @@ function removeFalsyValues(/* arr */) {
  *    getStringsLength([ '', 'a', 'bc', 'def', 'ghij' ]) => [ 0, 1, 2, 3, 4 ]
  *    getStringsLength([ 'angular', 'react', 'ember' ]) => [ 7, 5, 5 ]
  */
-function getStringsLength(/* arr */) {
-  throw new Error('Not implemented');
+function getStringsLength(arr) {
+  const result = arr.map((val) => val.length);
+  return result;
 }
 
 /**
@@ -119,8 +141,15 @@ function getStringsLength(/* arr */) {
  *   getAverage([ 1, 10, 100, 1000 ])  => 277,75
  *   getAverage([ 2, 3, 3 ])  => 2,67
  */
-function getAverage(/* arr */) {
-  throw new Error('Not implemented');
+function getAverage(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+
+  let result = 0;
+  const sum = arr.reduce((acc, number) => acc + number, 0);
+  result = sum / arr.length;
+  return result % 1 === 0 ? result : +result.toFixed(2);
 }
 
 /**
@@ -133,8 +162,14 @@ function getAverage(/* arr */) {
  *    isSameLength(['orange', 'banana', 'cherry']) => true
  *    isSameLength(['cat', 'dog', 'elephant']) => false
  */
-function isSameLength(/* arr */) {
-  throw new Error('Not implemented');
+function isSameLength(arr) {
+  if (arr.length === 0) return true;
+
+  // Получаем длину первой строки
+  const firstLength = arr[0].length;
+
+  // Проверяем, что все остальные строки имеют такую же длину
+  return arr.every((str) => str.length === firstLength);
 }
 
 /**
@@ -148,8 +183,8 @@ function isSameLength(/* arr */) {
  *    isValueEqualsIndex([2, 1, 0, 4, 5]) => true
  *    isValueEqualsIndex([10, 20, 30, 40, 50]) => false
  */
-function isValueEqualsIndex(/* arr */) {
-  throw new Error('Not implemented');
+function isValueEqualsIndex(arr) {
+  return arr.some((str, i) => str === i);
 }
 
 /**
